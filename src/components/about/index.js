@@ -1,4 +1,4 @@
-function about() {
+function About() {
   return (
     <section id="about" class="about">
       <div class="container">
@@ -30,7 +30,11 @@ function about() {
               <div>
                 <i
                   data-lucide="compass"
-                  //   style="font-size: 3rem; margin-bottom: 1rem; display: block"
+                  style={{
+                    fontSize: "3rem",
+                    marginBottom: "1rem",
+                    display: "block",
+                  }}
                 ></i>
                 <div>Guiding Your Path to Harmony</div>
               </div>
@@ -42,4 +46,4 @@ function about() {
   );
 }
 
-export default about;
+export default About;

@@ -1,4 +1,4 @@
-function footer() {
+function Footer() {
   return (
     <footer id="contact">
       <div class="container">
@@ -40,4 +40,4 @@ function footer() {
   );
 }
 
-export default footer;
+export default Footer;

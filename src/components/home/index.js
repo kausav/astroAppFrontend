@@ -1,4 +1,6 @@
-function home() {
+import { Link } from "react-router-dom";
+
+function Home() {
   return (
     <section id="home" class="hero">
       <div class="container">
@@ -8,13 +10,13 @@ function home() {
             Transform your space with the ancient wisdom of Vastu Shastra and
             Astrology. Expert guidance for a balanced, prosperous life.
           </p>
-          <a href="#query" class="cta-button">
+          <Link to="/queries" class="cta-button">
             Ask Your Question
-          </a>
+          </Link>
         </div>
       </div>
     </section>
   );
 }
 
-export default home;
+export default Home;

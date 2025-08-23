@@ -1,4 +1,4 @@
-function services() {
+function Services() {
   return (
     <section id="services" class="services">
       <div class="container">
@@ -40,4 +40,4 @@ function services() {
   );
 }
 
-export default services;
+export default Services;
