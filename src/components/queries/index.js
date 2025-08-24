@@ -8,14 +8,14 @@ function Queries() {
   const [queryType, setQueryType] = useState("");
   const [question, setQuestion] = useState("");
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const files = Array.from(e.target.files);
 
     const validFiles = files.filter((file) => {
       const isValidType = /\.(pdf|jpe?g|png|gif)$/i.test(file.name);
       const isValidSize = file.size <= 10 * 1024 * 1024; // 10MB
-
       return isValidType && isValidSize;
     });
 
@@ -23,7 +23,19 @@ function Queries() {
       alert("Some files were invalid or too large (max 10MB each).");
     }
 
+    if (validFiles.length === 0) return;
+
+    // update state for preview
     setSelectedFiles(validFiles);
+
+    // upload using the files directly
+    AdminAction.uploadFiles(validFiles, (err, res) => {
+      if (err) {
+        alert(err.message);
+      } else {
+        setUploadedFiles(res.data);
+      }
+    });
   };
 
   const submitData = async () => {
@@ -33,7 +45,7 @@ function Queries() {
       phoneNumber,
       queryType,
       question,
-      selectedFiles,
+      uploadedFiles,
     };
     AdminAction.createQuestion(dataToSend, (err, res) => {
       if (err) {

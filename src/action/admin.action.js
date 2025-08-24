@@ -60,10 +60,30 @@ const createQuestion = (payload, cb) => {
     });
 };
 
+const uploadFiles = (files, cb) => {
+  const req = Agent.fire("post", `${BACKEND_URL}/question/uploadImages`);
+
+  files.forEach((file) => {
+    req.attach("attachments", file); // backend field name
+  });
+
+  req.end((err, res) => {
+    const error =
+      err || res.error
+        ? ServerError(res)
+        : res.body && res.body.error
+        ? ServerError(res)
+        : null;
+
+    if (typeof cb === "function") return cb(error, res && res.body);
+  });
+};
+
 const AdminAction = {
   signIn,
   signUp,
   createQuestion,
+  uploadFiles,
 };
 
 export default AdminAction;
